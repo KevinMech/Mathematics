@@ -114,21 +114,21 @@ if __name__ == '__main__':
     precision = 0
     pygame.init()
 
-    table = raw_input("Entrez la table de multiplication souhaitée : ")
+    table = None
+    while table is None:
+        table_input = raw_input("Entrez la table de multiplication souhaitée: ")
+        if table_input.isdigit():
+            table = int(table_input)
+        else:
+            print('Veuillez entrer un numéro et réessayer\n')
 
-    try:
-        table = int(table)
-    except ValueError:
-        table = decimal.Decimal(table)
-        precision = len(str(table).split(".")[1])
-    except e:
-        table = 2
-
-    base = raw_input("Entrez la base souhaitée : ")
-    try:
-        base = int(base)
-    except e:
-        base = 10
+    base = None
+    while base is None:
+        base_input = raw_input("Entrez la base souhaitée: ")
+        if base_input.isdigit() and int(base_input) > 0:
+            base = int(base_input)
+        else:
+            print("entrez un nombre supérieur à 0 et réessayez\n")
 
     afficher = raw_input("Afficher les points (o / n) : ")
 
